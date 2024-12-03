@@ -1,0 +1,41 @@
+﻿@keyframes appear {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
+
+.form-container {
+    min-height: 100vh;
+}
+
+.login-form {
+    max-width: 100%;
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff; /* White background for the form */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slide 1s ease-in-out forwards;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(-150px);
+    }
+
+    to {
+        transform: translateX(-610px);
+    }
+}
+
+.image-section {
+    background-image: url('/images/variety-tasty-fruits-wooden-bucket-flip.jpg');
+    background-size: cover;
+    background-position: center;
+    transform: translateX(250px);
+    animation: appear 1s ease-in forwards;
+}

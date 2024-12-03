@@ -1,0 +1,48 @@
+﻿@page
+@model SmartGroceryMgtSystem.Pages.Admin.Driver.ManageModel;
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="text-success">Manage Drivers</h1>
+        <a asp-page="/Admin/Driver/Create" class="btn btn-success">Add New Driver</a>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.listDrivers.Any())
+            {
+                @foreach (var driver in Model.listDrivers)
+                {
+                    <tr>
+                        <td>@driver.user_id</td>
+                        <td>@driver.full_name</td>
+                        <td>@driver.email</td>
+                        <td>@driver.password</td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" href="/Admin/Driver/Delete?user_id=@driver.user_id">Delete</a>
+                            <a class="btn btn-warning btn-sm" href="/Admin/Driver/Edit?user_id=@driver.user_id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No Drivers available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

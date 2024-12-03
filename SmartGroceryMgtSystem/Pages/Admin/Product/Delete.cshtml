@@ -1,0 +1,27 @@
+﻿
+@page
+@using Microsoft.Data.SqlClient
+
+
+@{
+	string? id = Request.Query["id"];
+	try
+	{
+		string conString = "Data Source=DESKTOP-65VK734\\SQLEXPRESS;Initial Catalog=groceries_management_system_db;Integrated Security=True;TrustServerCertificate=True";
+		using (SqlConnection con = new SqlConnection(conString))
+		{
+			con.Open();
+			string sqlQuery = "DELETE FROM  [dbo].[grocery] WHERE grocery_id=@v_id";
+			using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+			{
+				cmd.Parameters.AddWithValue("@v_id", id);
+				cmd.ExecuteNonQuery();
+			}
+		}
+	}
+	catch (Exception ex)
+	{
+		Console.WriteLine("Error" + ex.Message);
+	}
+	Response.Redirect("/Admin/Product/Manage");
+}

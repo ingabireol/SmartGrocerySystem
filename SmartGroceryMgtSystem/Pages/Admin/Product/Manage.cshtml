@@ -1,0 +1,51 @@
+﻿@page
+@model SmartGroceryMgtSystem.Pages.Admin.Product.ManageModel;
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="text-success">Manage Groceries</h1>
+        <a asp-page="/Admin/" class="btn btn-success">Add New Grocery</a>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Groceries.Any())
+            {
+                @foreach (var grocery in Model.Groceries)
+                {
+                    <tr>
+                        <td>@grocery.Grocery_id</td>
+                        <td>@grocery.Name</td>
+                        <td>@grocery.Category</td>
+                        <td>@grocery.Price.ToString("C")</td>
+                        <td>
+                            <img src="@grocery.ImageUrl" alt="@grocery.Name" class="img-thumbnail" style="max-width: 100px;">
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" href="/Admin/Product/Delete?id=@grocery.Grocery_id">Delete</a>
+                            <a class="btn btn-warning btn-sm" href="/Admin/Product/Edit?id=@grocery.Grocery_id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No groceries available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

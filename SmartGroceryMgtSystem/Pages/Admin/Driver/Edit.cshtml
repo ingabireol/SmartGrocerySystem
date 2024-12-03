@@ -1,0 +1,49 @@
+﻿@page
+@model SmartGroceryMgtSystem.Pages.Admin.Driver.EditModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center text-success mb-4">Edit Driver</h2>
+    @if (Model.errorMessage.Length > 0)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>@Model.errorMessage</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+        </div>
+    }
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <input name="user_id" type="text" class="form-control"  value="@Model.driverInfo.user_id" hidden>
+                    <label for="fullname" class="form-label">fullname</label>
+                    <input name="full_name" type="text" class="form-control" id="full_name" value="@Model.driverInfo.full_name" placeholder="Driver's fullname">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="Email" value="@Model.driverInfo.email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password" value="@Model.driverInfo.password">
+                </div>
+                @if (Model.successMessage.Length > 0)
+                {
+                    <div class="row mb-3">
+                        <div class="col-sm-9">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>@Model.successMessage</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Edit Driver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
